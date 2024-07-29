@@ -67,11 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Home.aspx" />
+    <Content Include="Naama-home.aspx" />
     <Content Include="lingar-home.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Naama-home.aspx.cs">
+      <DependentUpon>Naama-home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Naama-home.aspx.designer.cs">
+      <DependentUpon>Naama-home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lingar-home.aspx.cs">
       <DependentUpon>lingar-home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
