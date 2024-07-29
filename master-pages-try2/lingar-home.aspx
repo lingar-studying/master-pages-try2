@@ -4,8 +4,15 @@
     Here is my header lingar 
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" class ="regular-page">
 
     <h1>Home page lingar</h1>
+
+</asp:Content>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h1 class ="regular-page">Main Area</h1>
 
 </asp:Content>

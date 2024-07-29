@@ -11,3 +11,14 @@
     padding: 10px;
     height: 50px;
 }
+
+#mainContent {
+    border: solid 2px grey;
+    float: right;
+    width: 70%;
+    /*display: block;*/
+}
+#leftContent{
+    border: solid 2px grey;
+    width: 20%;
+}
