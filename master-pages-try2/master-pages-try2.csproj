@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lingar-home.aspx" />
+    <Content Include="styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

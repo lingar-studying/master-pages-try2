@@ -7,6 +7,8 @@
     <title>Lingar professional 1M</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+    <link href="/styles.css" rel="stylesheet" type="text/css" runat="server" />
 </head>
 <body>
 
@@ -15,6 +17,37 @@
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+            <h2>YOP </h2>
+        </div>
+
+        <div id="mainContent">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <p>zkxcj zlxkjc zxkj zxjcl kzjl kjxlzkcjl kjz lkjzx lkasd 
+                zxcjzx;jc zx
+                x;zjc;zxjc z
+                 xzk zxk z kxckh;fdias'jf  
+
+
+                zxckz;xck  
+
+            </p>
+        </div>
+
+        <div id="leftContent">
+            <h3>Lessons</h3>
+            <ul>
+                <li>TODO</li>
+            </ul>
+            <h3>News</h3>
+            <ul>
+                <li>TODO</li>
+            </ul>
+        </div>
+
+        <div id="footerContent">
+            <img src="Images/PoweredByASPNET.gif" alt="Powered by ASP.NET!" />
         </div>
     </form>
 </body>
