@@ -14,37 +14,52 @@
 
     <h1>Try to create the annoying master page</h1>
     <form id="form1" runat="server">
-        <div id ="topContent">
-                <h2>Here is the top  content, it's looking for the aspx file with this id ?  </h2>
+        <div id="topContent">
+            <h2>Here is the top  content, it's looking for the aspx file with this id ?  </h2>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-        
+
         </div>
 
         <div id="mainContent">
 
-            <p>Here is MainContent Id
+            <p>
+                Here is MainContent Id
 
             </p>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
 
-            
+
         </div>
 
         <div id="leftContent">
-            <h3>Lessons</h3>
+
+
+            <h3>Lessons2</h3>
             <ul>
-                <li>TODO</li>
+                <li><a></a></li>
             </ul>
             <h3>News</h3>
             <ul>
                 <li>TODO</li>
             </ul>
+            <%-- We can reffer that in the code page_load --%>
+            <p>
+                today is
+                <asp:Label ID="DateDisplay" runat="server"></asp:Label>
+            </p>
+
+             <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/Page1.aspx">Page1</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
         </div>
 
+
         <div id="footerContent">
-            <img src="Images/PoweredByASPNET.gif" alt="Powered by ASP.NET!" />
+            <img src="images/image1.jpg" alt="Powered by ASP.NET!" runat="server" />
         </div>
     </form>
 </body>

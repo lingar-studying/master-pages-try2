@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace master_pages_try2
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class Page1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DateDisplay.Text = DateTime.Now.ToString("dddd, MMMM dd");
+
 
         }
     }
