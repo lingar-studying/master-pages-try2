@@ -15,7 +15,12 @@ namespace master_pages_try2
         {
             Stock[] stocks =  StockService.CreateMock();
 
-            StocksArea.Text = stocks[0].OfficialName; 
+            StocksArea.Text = stocks[0].OfficialName;
+
+            Repeater1.DataSource = stocks;
+            Repeater1.DataBind();
+
+
         }
     }
 }

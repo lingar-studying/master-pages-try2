@@ -26,6 +26,11 @@ namespace master_pages_try2.app_logic
             Console.WriteLine($"Official Name = {OfficialName}, price = {Price}, sign = {Sign}");
         }
 
+        public override string ToString()
+        {
+            return string.Format("Stock=[OfficialName = {0}, Sign={1}, Price={2}]", officialName, sign, price);
+        }
+
 
         //create properties : 
         //Official Name, price, sign (=סמליל) ,starting price , closing price, industry(=תעשייה), exchange (=בורסה)
