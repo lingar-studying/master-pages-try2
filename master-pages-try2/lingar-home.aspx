@@ -11,8 +11,17 @@
 </asp:Content>
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<%--<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1 class ="regular-page">Main Area</h1>
 
+</asp:Content>--%>
+
+
+<asp:Content ID="Content3" runat="server" contentplaceholderid="ContentPlaceHolder2">
+
+    Added automatically 
 </asp:Content>
+
+
+

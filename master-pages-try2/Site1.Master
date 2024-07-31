@@ -53,12 +53,15 @@
             <ul class="nav navbar-nav">
                 <li><a runat="server" href="~/">Home</a></li>
                 <li><a runat="server" href="~/Page1.aspx">Page1</a></li>
-                <li><a runat="server" href="~/Contact">Contact</a></li>
+                <li><a runat="server" href="~/Contact">Contact - not exist</a></li>
                 <li><a runat="server" href="~/MultipleContentPlaceHolders.aspx">Multiple pages</a></li>
+                 <li><a runat="server" href="~/Page2.aspx">Page2</a></li>
             </ul>
 
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+
+               master page content place holder 2. 
             </asp:ContentPlaceHolder>
             
         </div>

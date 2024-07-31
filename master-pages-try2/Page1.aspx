@@ -7,3 +7,8 @@
 
     <h1 class ="page1">Here will come page 1 content.</h1>
 </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+
+    <h3>Page-Specific Content</h3>
+    <h4>Page 1 left</h4>
+</asp:Content>
