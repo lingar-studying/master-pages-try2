@@ -1,4 +1,6 @@
-﻿namespace master_pages_try2.app_logic
+﻿using System;
+
+namespace master_pages_try2.app_logic
 {
     public class Stock
     {

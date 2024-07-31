@@ -1,4 +1,7 @@
-﻿namespace asp_learning.app_logic
+﻿using System;
+using master_pages_try2.app_logic;
+
+namespace asp_learning.app_logic
 {
     public class StockService
     {
