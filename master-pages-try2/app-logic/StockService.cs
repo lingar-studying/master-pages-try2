@@ -1,7 +1,7 @@
 ﻿using System;
 using master_pages_try2.app_logic;
 
-namespace asp_learning.app_logic
+namespace master_pages_try2.app_logic
 {
     public class StockService
     {

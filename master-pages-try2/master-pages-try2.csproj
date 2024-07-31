@@ -70,6 +70,7 @@
     <Content Include="imgaes\image1.jpg" />
     <Content Include="lingar-home.aspx" />
     <Content Include="MultipleContentPlaceHolders.aspx" />
+    <Content Include="MyStocks.aspx" />
     <Content Include="Page1.aspx" />
     <Content Include="Page2.aspx" />
     <Content Include="styles.css" />
@@ -93,6 +94,13 @@
     </Compile>
     <Compile Include="MultipleContentPlaceHolders.aspx.designer.cs">
       <DependentUpon>MultipleContentPlaceHolders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyStocks.aspx.cs">
+      <DependentUpon>MyStocks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyStocks.aspx.designer.cs">
+      <DependentUpon>MyStocks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page1.aspx.cs">
       <DependentUpon>Page1.aspx</DependentUpon>
