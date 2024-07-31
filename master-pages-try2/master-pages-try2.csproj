@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="imgaes\image1.jpg" />
     <Content Include="lingar-home.aspx" />
+    <Content Include="MultipleContentPlaceHolders.aspx" />
     <Content Include="Page1.aspx" />
     <Content Include="styles.css" />
     <Content Include="Web.config" />
@@ -80,6 +81,13 @@
     </Compile>
     <Compile Include="lingar-home.aspx.designer.cs">
       <DependentUpon>lingar-home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MultipleContentPlaceHolders.aspx.cs">
+      <DependentUpon>MultipleContentPlaceHolders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MultipleContentPlaceHolders.aspx.designer.cs">
+      <DependentUpon>MultipleContentPlaceHolders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page1.aspx.cs">
       <DependentUpon>Page1.aspx</DependentUpon>
