@@ -76,6 +76,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app-logic\IID.cs" />
+    <Compile Include="app-logic\Stock.cs" />
+    <Compile Include="app-logic\StockService.cs" />
     <Compile Include="lingar-home.aspx.cs">
       <DependentUpon>lingar-home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -83,6 +86,7 @@
     <Compile Include="lingar-home.aspx.designer.cs">
       <DependentUpon>lingar-home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\User.cs" />
     <Compile Include="MultipleContentPlaceHolders.aspx.cs">
       <DependentUpon>MultipleContentPlaceHolders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,6 +127,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
