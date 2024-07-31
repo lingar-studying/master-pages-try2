@@ -8,3 +8,8 @@
 </asp:Content>
 <%--<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>--%>
+ <asp:Content ID="Content4" ContentPlaceHolderID="QuickLoginUI" runat="server">
+   
+     <h2>User logged</h2>
+
+ </asp:Content>

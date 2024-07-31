@@ -55,15 +55,28 @@
                 <li><a runat="server" href="~/Page1.aspx">Page1</a></li>
                 <li><a runat="server" href="~/Contact">Contact - not exist</a></li>
                 <li><a runat="server" href="~/MultipleContentPlaceHolders.aspx">Multiple pages</a></li>
-                 <li><a runat="server" href="~/Page2.aspx">Page2</a></li>
+                <li><a runat="server" href="~/Page2.aspx">Page2</a></li>
             </ul>
 
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-
-               master page content place holder 2. 
+                master page content place holder 2. 
             </asp:ContentPlaceHolder>
+
+           <%-- <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server">
+                <asp:Login ID="QuickLogin" runat="server"
+                    TitleText="<h3>Sign In</h3>"
+                    FailureAction="RedirectToLoginPage">
+                </asp:Login>
+            </asp:ContentPlaceHolder>--%>
+
             
+            <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server">
+              
+                <h2>Sign in</h2>
+
+            </asp:ContentPlaceHolder>
+
         </div>
 
 
