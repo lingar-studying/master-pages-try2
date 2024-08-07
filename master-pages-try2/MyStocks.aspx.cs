@@ -13,6 +13,8 @@ namespace master_pages_try2
     {
 
         public static Stock[] stocks = null;
+
+        public static List<Stock> stocks_list = new List<Stock>();
         protected void Page_Load(object sender, EventArgs e)
         {
             Console.WriteLine("Log");
@@ -24,9 +26,20 @@ namespace master_pages_try2
 
                 StocksArea.Text = stocks[0].OfficialName;
 
+                if(stocks_list.Count == 0)
+                {
+                    for (int i = 0; i < stocks.Length; i++)
+                    {
+                        stocks_list.Add(stocks[i]);
+                    }
+
+                }
+               
+
                 Repeater1.DataSource = stocks;
                 Repeater1.DataBind();
-
+                Repeater2.DataSource = stocks_list;
+                Repeater2.DataBind();
             }
 
 
@@ -67,6 +80,21 @@ namespace master_pages_try2
             {
                 lblResult.Text = "Invalid age entered.";
             }
+        }
+
+        protected void AddNewStock(object sender, EventArgs e)
+        {
+            // Retrieve values from TextBox controls
+            string officalName = OfNameInput.Text;
+            string sign = SignInput.Text;
+            double price = int.Parse(PriceInput.Text);
+            // Optionally, convert age to an integer
+            Stock newStock = new Stock(officalName, sign, price);
+            stocks_list.Add(newStock);
+            Repeater2.DataSource = stocks_list;
+            Repeater2.DataBind();
+
+
         }
     }
 }
