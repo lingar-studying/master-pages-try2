@@ -22,5 +22,9 @@ namespace master_pages_try2
 
 
         }
+        protected void DoSomething(object sender, EventArgs e)
+        {
+            MyTitle.Text = "Stocks App";
+        }
     }
 }

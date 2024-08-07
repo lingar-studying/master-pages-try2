@@ -19,6 +19,11 @@
         </ItemTemplate>
     </asp:Repeater>
 
+    <h3>Dynamic area... <br /> 
+        Add Stock</h3>
+    <h3>I am page of... <asp:Label runat ="server" ID ="MyTitle"><span>???? - click the button for explore</span></asp:Label> </h3>
+    <asp:Button ID="Button1" runat="server" Text="Do some method" OnClick="DoSomething" />  
+
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
