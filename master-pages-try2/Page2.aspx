@@ -6,7 +6,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     See that here ContentPlaceHolder2 not defined, so it's taking from the master page (compare it to page1)
 </asp:Content>
-<%--<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<%--<asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+
+    Content from page 2 on placeHolder2
 </asp:Content>--%>
  <asp:Content ID="Content4" ContentPlaceHolderID="QuickLoginUI" runat="server">
    

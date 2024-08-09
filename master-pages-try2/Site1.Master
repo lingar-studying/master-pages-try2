@@ -54,6 +54,7 @@
             <p>
                 today is
                 <asp:Label ID="DateDisplay" runat="server"></asp:Label>
+                <asp:CheckBox ID="CheckBox1" runat="server" />
             </p>
 
             <ul class="nav navbar-nav">
