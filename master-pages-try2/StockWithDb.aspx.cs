@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -23,10 +24,13 @@ namespace master_pages_try2
                 string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
                 con = new SqlConnection(connectionString2);
                 con.Open();
-                
+
                 string[] data = GetData();
 
                 dbData.Text = "num= " + data[0] + "| Word = " + data[1];
+
+                CreateInitTables();
+
                 con.Close();
 
             }
@@ -64,8 +68,48 @@ namespace master_pages_try2
             return data;
         }
 
+        //trying this:
+        //https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/dataset-datatable-dataview/creating-a-datatable
+        public static void CreateInitTablesOlD()
+        {
+            DataTable workTable = new DataTable("Users");
+            DataSet customers = new DataSet();
+
+            DataTable userTables = customers.Tables.Add("users_table");
+            DataColumn dataColumn = new DataColumn();
+            dataColumn.ColumnName = "username";
+            dataColumn.DataType = typeof(string);
+            dataColumn.Unique = true;
+
+
+            userTables.Columns.Add(dataColumn);
+            userTables.Columns.Add("password", typeof(string), "");
+
+            userTables.Columns.Add("male", typeof(bool), "");
+
+            //insert 
+            //https://learn.microsoft.com/en-us/visualstudio/data-tools/insert-new-records-into-a-database?view=vs-2022&tabs=csharp
+
+        }
+
+        //assuming connection is open
         public static void CreateInitTables()
         {
+            //string query = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cars' AND xtype='U')\r\nCREATE TABLE Cars (\r\n    CarID INT PRIMARY KEY,\r\n    CarName NVARCHAR(50),\r\n    CarBrand NVARCHAR(50)\r\n);"
+
+           
+
+                string query = @"
+                    IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='users' AND xtype='U')
+                    CREATE TABLE users (
+                    username INT PRIMARY KEY,
+                    email NVARCHAR(50) NOT NULL UNIQUE,
+                    password NVARCHAR(50) NOT NULL,
+                    comment nvarchar(500) 
+                );";
+
+            SqlCommand command = new SqlCommand(query, con);
+            command.ExecuteNonQuery();
 
         }
     }
