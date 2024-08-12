@@ -64,6 +64,8 @@
                 <li><a runat="server" href="~/MultipleContentPlaceHolders.aspx">Multiple pages</a></li>
                 <li><a runat="server" href="~/Page2.aspx">Page2</a></li>
                 <li><a runat="server" href="~/MyStocks.aspx">Stocks Store</a></li>
+                <li><a runat="server" href="~/StockWithDb.aspx">Stocks with DB</a></li>
+
             </ul>
 
 
