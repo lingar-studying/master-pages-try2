@@ -54,5 +54,33 @@ namespace master_pages_try2.app_logic
             }
 
         }
+        //assuming connection is open
+        public static void CreateInitTables()
+        {
+            connection.Open();
+            //string query = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cars' AND xtype='U')\r\nCREATE TABLE Cars (\r\n    CarID INT PRIMARY KEY,\r\n    CarName NVARCHAR(50),\r\n    CarBrand NVARCHAR(50)\r\n);"
+
+
+
+            string query = @"
+                    IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='users' AND xtype='U')
+                    CREATE TABLE users (
+                    username Varchar(50) PRIMARY KEY,
+                    email NVARCHAR(50) NOT NULL UNIQUE,
+                    password NVARCHAR(50) NOT NULL,
+                    comment nvarchar(500) 
+                );";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.ExecuteNonQuery();
+            User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
+            User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
+
+            UserDao.AddUser(user1);
+            UserDao.AddUser(user2);
+            connection.Close ();
+
+        }
+
     }
 }

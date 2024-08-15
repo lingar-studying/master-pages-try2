@@ -13,7 +13,8 @@ namespace master_pages_try2
 {
     public partial class StockWithDb : System.Web.UI.Page
     {
-        public static SqlConnection con;
+        public static SqlConnection con = new SqlConnection(connectionString2);
+        public static string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,25 +29,17 @@ namespace master_pages_try2
 
                     Debug.WriteLine("Initial db.");
 
-                    string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
-                    con = new SqlConnection(connectionString2);
-                    con.Open();
 
                     string[] data = GetData();
 
                     dbData.Text = "num= " + data[0] + "| Word = " + data[1];
 
-                    CreateInitTables();
+                    UserDao.CreateInitTables();
 
 
-                    User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
-                    User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
-
-                    UserDao.AddUser(user1);
-                    UserDao.AddUser(user2);
-                    con.Close();
+                   
                 }
-                catch (SqlException  ex)
+                catch (SqlException ex)
                 {
                     Debug.WriteLine("error here:\n" + ex.Message);
                     Debug.WriteLine("SQL Error Number: " + ex.Number);
@@ -66,6 +59,7 @@ namespace master_pages_try2
 
             //SqlCommand command2 = new SqlCommand("SELECT * FROM Cars;",con);
             string query = "SELECT * FROM POC;";
+            con.Open();
             SqlCommand command = new SqlCommand(query, con);
 
 
@@ -87,7 +81,7 @@ namespace master_pages_try2
             //    Console.WriteLine("No rows found.");
             //}
             reader.Close();
-
+            con.Close();
             return data;
         }
 
@@ -115,25 +109,5 @@ namespace master_pages_try2
 
         }
 
-        //assuming connection is open
-        public static void CreateInitTables()
-        {
-            //string query = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cars' AND xtype='U')\r\nCREATE TABLE Cars (\r\n    CarID INT PRIMARY KEY,\r\n    CarName NVARCHAR(50),\r\n    CarBrand NVARCHAR(50)\r\n);"
-
-           
-
-                string query = @"
-                    IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='users' AND xtype='U')
-                    CREATE TABLE users (
-                    username Varchar(50) PRIMARY KEY,
-                    email NVARCHAR(50) NOT NULL UNIQUE,
-                    password NVARCHAR(50) NOT NULL,
-                    comment nvarchar(500) 
-                );";
-
-            SqlCommand command = new SqlCommand(query, con);
-            command.ExecuteNonQuery();
-
-        }
     }
 }
