@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using master_pages_try2.app_logic;
 namespace master_pages_try2
 {
     public partial class StockWithDb : System.Web.UI.Page
@@ -21,17 +22,39 @@ namespace master_pages_try2
             //only on the first load
             if (!IsPostBack)
             {
-                string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
-                con = new SqlConnection(connectionString2);
-                con.Open();
 
-                string[] data = GetData();
+                try
+                {
 
-                dbData.Text = "num= " + data[0] + "| Word = " + data[1];
+                    Debug.WriteLine("Initial db.");
 
-                CreateInitTables();
+                    string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+                    con = new SqlConnection(connectionString2);
+                    con.Open();
 
-                con.Close();
+                    string[] data = GetData();
+
+                    dbData.Text = "num= " + data[0] + "| Word = " + data[1];
+
+                    CreateInitTables();
+
+
+                    User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
+                    User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
+
+                    UserDao.AddUser(user1);
+                    UserDao.AddUser(user2);
+                    con.Close();
+                }
+                catch (SqlException  ex)
+                {
+                    Debug.WriteLine("error here:\n" + ex.Message);
+                    Debug.WriteLine("SQL Error Number: " + ex.Number);
+                    Debug.WriteLine("SQL Error Message: " + ex.Message);
+                    Debug.WriteLine("SQL Error StackTrace: " + ex.StackTrace);
+
+                }
+
 
             }
 
@@ -102,7 +125,7 @@ namespace master_pages_try2
                 string query = @"
                     IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='users' AND xtype='U')
                     CREATE TABLE users (
-                    username INT PRIMARY KEY,
+                    username Varchar(50) PRIMARY KEY,
                     email NVARCHAR(50) NOT NULL UNIQUE,
                     password NVARCHAR(50) NOT NULL,
                     comment nvarchar(500) 
