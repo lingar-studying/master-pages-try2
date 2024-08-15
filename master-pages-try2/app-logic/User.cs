@@ -24,5 +24,10 @@ namespace master_pages_try2.app_logic
         public string Password { get => password; set => password = value; }
         public string Comment { get => comment; set => comment = value; }
         public string Email { get => email; set => email = value; }
+
+        public override string ToString()
+        {
+            return $"user=[username:{userName}, password: {password}, email: {email}, comment: {comment}]";
+        }
     }
 }

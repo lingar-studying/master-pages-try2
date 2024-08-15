@@ -53,12 +53,32 @@ namespace master_pages_try2
 
         }
 
+
+        protected void AddNewUser(object sender, EventArgs e)
+        {
+            // Retrieve values from TextBox controls
+            string username = OfUserName.Text;
+            string password = OfPassword.Text;
+            string email = OfEmail.Text;
+            string comment = OfComment.Text;
+
+            //creating new user
+
+            User user = new User(username, password, email, comment);   
+
+            //adding to the db
+            User success = UserDao.AddUser(user);
+            Debug.WriteLine("User added = " + success);
+
+            ResetTextBoxes(this);
+        }
         public static string[] GetData()
         {
             ////assuming that connection is open
 
             //SqlCommand command2 = new SqlCommand("SELECT * FROM Cars;",con);
             string query = "SELECT * FROM POC;";
+            con = new SqlConnection(connectionString2);
             con.Open();
             SqlCommand command = new SqlCommand(query, con);
 
@@ -107,6 +127,21 @@ namespace master_pages_try2
             //insert 
             //https://learn.microsoft.com/en-us/visualstudio/data-tools/insert-new-records-into-a-database?view=vs-2022&tabs=csharp
 
+        }
+
+        protected void ResetTextBoxes(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ((TextBox)ctrl).Text = string.Empty;
+                }
+                else if (ctrl.HasControls())
+                {
+                    ResetTextBoxes(ctrl); // Recursive call for nested controls
+                }
+            }
         }
 
     }

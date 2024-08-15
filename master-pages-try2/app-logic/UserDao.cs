@@ -11,20 +11,20 @@ namespace master_pages_try2.app_logic
 {
     public class UserDao
     {
-        public static SqlConnection connection => _lazyConnection.Value;
+        //public static SqlConnection
+        static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
 
-        
 
-        private static readonly Lazy<SqlConnection> _lazyConnection = new Lazy<SqlConnection>(() =>
-        {
-            string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
-            return new SqlConnection(connectionString2);
-        });
+
+       
 
         public static User AddUser(User user)
         {
+            SqlConnection connection = new SqlConnection(connectionString);
+
             try
             {
+
                 connection.Open();
                 string query = "INSERT INTO users VALUES (@username, @password, @email ,@commentLingar)";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -51,12 +51,16 @@ namespace master_pages_try2.app_logic
             {
                 connection.Close();
 
+
             }
 
         }
         //assuming connection is open
         public static void CreateInitTables()
         {
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
             connection.Open();
             //string query = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cars' AND xtype='U')\r\nCREATE TABLE Cars (\r\n    CarID INT PRIMARY KEY,\r\n    CarName NVARCHAR(50),\r\n    CarBrand NVARCHAR(50)\r\n);"
 
