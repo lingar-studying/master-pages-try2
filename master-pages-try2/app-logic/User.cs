@@ -9,17 +9,20 @@ namespace master_pages_try2.app_logic
     {
         private string userName; 
         private  string password;
-        private bool male;
+        private string email;
+        private string comment;
 
-        public User(string userName, string password, bool male)
+        public User(string userName, string password, string email, string comment)
         {
             this.userName = userName;
             this.password = password;
-            this.male = male;
+            this.email = email;
+            this.comment = comment;
         }
 
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
-        public bool Male { get => male; set => male = value; }
+        public string Comment { get => comment; set => comment = value; }
+        public string Email { get => email; set => email = value; }
     }
 }

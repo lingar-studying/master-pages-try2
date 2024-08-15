@@ -82,6 +82,8 @@
     <Compile Include="app-logic\Stock.cs" />
     <Compile Include="app-logic\StockService.cs" />
     <Compile Include="app-logic\User.cs" />
+    <Compile Include="app-logic\UserDao.cs" />
+    <Compile Include="app-logic\UserService.cs" />
     <Compile Include="lingar-home.aspx.cs">
       <DependentUpon>lingar-home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
