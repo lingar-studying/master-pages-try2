@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Diagnostics;
+using System.Runtime.Remoting.Messaging;
 
 namespace master_pages_try2.app_logic
 {
@@ -16,7 +17,7 @@ namespace master_pages_try2.app_logic
 
 
 
-       
+
 
         public static User AddUser(User user)
         {
@@ -39,7 +40,7 @@ namespace master_pages_try2.app_logic
             }
             catch (SqlException ex)
             {
-                
+
 
                 Debug.WriteLine("error here:\n" + ex.Message);
                 Debug.WriteLine("SQL Error Number: " + ex.Number);
@@ -77,13 +78,64 @@ namespace master_pages_try2.app_logic
 
             SqlCommand command = new SqlCommand(query, connection);
             command.ExecuteNonQuery();
-            User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
-            User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
+            //User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
+            //User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
 
-            UserDao.AddUser(user1);
-            UserDao.AddUser(user2);
-            connection.Close ();
+            //UserDao.AddUser(user1);
+            //UserDao.AddUser(user2);
+            connection.Close();
 
+        }
+
+
+        public static User[] GetUsers()
+        {
+
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            //run a specialized SELECT COUNT(*) query beforehand.
+
+
+
+            connection.Open();
+
+            string query = "Select COUNT(*) from users";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+            int count = reader.GetInt32(0);
+            Debug.WriteLine("rows = " + count);
+            reader.Close();
+
+
+            query = "Select * from users";
+            command = new SqlCommand(query, connection);
+
+            User[] users = new User[count];
+             reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                int i = 0;
+                //reader.Ro
+                while (reader.Read())//this method read one row, and return true if exist antoher
+                {
+                    users[i++] = RowToUser(reader);
+                }
+            }
+            Debug.WriteLine($"Select users = {string.Join(",\n", (object[]) users)}");
+            reader.Close();
+            return users;
+
+
+
+        }
+
+        public static User RowToUser(SqlDataReader reader)
+        {
+            User user = new User(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+
+            return user;
         }
 
     }

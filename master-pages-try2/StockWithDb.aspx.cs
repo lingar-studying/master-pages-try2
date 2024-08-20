@@ -35,6 +35,7 @@ namespace master_pages_try2
                     dbData.Text = "num= " + data[0] + "| Word = " + data[1];
 
                     UserDao.CreateInitTables();
+                    UserDao.GetUsers();
 
 
                    
