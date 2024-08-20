@@ -40,13 +40,28 @@
         <asp:TextBox ID="OfPassword" runat="server"></asp:TextBox>
         <asp:Label ID="Label1" runat="server" Text="Email:"></asp:Label>
         <asp:TextBox ID="OfEmail" runat="server" TextMode="Email"></asp:TextBox>
-         <asp:Label ID="Label2" runat="server" Text="Comment:"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Comment:"></asp:Label>
         <asp:TextBox ID="OfComment" runat="server" TextMode="SingleLine"></asp:TextBox>
-        <asp:Button ID="Button3" runat="server" Text="Add Stock" OnClick="AddNewUser" />
+        <asp:Button ID="Button3" runat="server" Text="Add User" OnClick="AddNewUser" />
 
         <asp:Label ID="Label3" runat="server"></asp:Label>
+
+
+        
+    <h2>Users List</h2>
+
+    <asp:Table runat="server" ID="UsersTable" BorderWidth="1" GridLines="Both" CellPadding="10">
+        <asp:TableHeaderRow ID="Table1HeaderRow" BackColor="LightBlue" runat="server">
+            <asp:TableHeaderCell Scope="Column" Text="Username" />
+            <asp:TableHeaderCell Scope="Column" Text="Email" />
+            <asp:TableHeaderCell Scope="Column" Text="Birthday" />
+            <asp:TableHeaderCell Scope="Column" Text="City" />
+            <asp:TableHeaderCell Scope="Column" Text="Is Admin" />
+        </asp:TableHeaderRow>
+    </asp:Table>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="QuickLoginUI" runat="server">
+
 </asp:Content>

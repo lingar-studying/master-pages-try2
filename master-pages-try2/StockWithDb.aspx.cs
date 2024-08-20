@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.EnterpriseServices.Internal;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +16,7 @@ namespace master_pages_try2
     {
         public static SqlConnection con = new SqlConnection(connectionString2);
         public static string connectionString2 = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master-page-try;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
-
+        public static User[] users = null;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -35,10 +36,13 @@ namespace master_pages_try2
                     dbData.Text = "num= " + data[0] + "| Word = " + data[1];
 
                     UserDao.CreateInitTables();
-                    UserDao.GetUsers();
+
+                    users = UserDao.GetUsers();
+                    Debug.WriteLine("Updating users = " + string.Join("\n", (object[])users));
+
+                    DisplayUsers();
 
 
-                   
                 }
                 catch (SqlException ex)
                 {
@@ -50,8 +54,21 @@ namespace master_pages_try2
                 }
 
 
-            }
 
+
+            }
+            try
+            {
+
+
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine("error here:\n" + ex.Message);
+                Debug.WriteLine("SQL Error Number: " + ex.Number);
+                Debug.WriteLine("SQL Error Message: " + ex.Message);
+                Debug.WriteLine("SQL Error StackTrace: " + ex.StackTrace);
+            }
         }
 
 
@@ -72,6 +89,11 @@ namespace master_pages_try2
             Debug.WriteLine("User added = " + success);
 
             ResetTextBoxes(this);
+
+            users = UserDao.GetUsers();
+            Debug.WriteLine("Updating users = " + string.Join("\n", (object[])users));
+
+            DisplayUsers();
         }
         public static string[] GetData()
         {
@@ -143,6 +165,21 @@ namespace master_pages_try2
                     ResetTextBoxes(ctrl); // Recursive call for nested controls
                 }
             }
+        }
+
+        private void DisplayUsers()
+        {
+            UsersTable.Rows.Clear(); 
+            foreach (var user in users)
+            {
+                TableRow row = new TableRow();
+                row.Cells.Add(new TableCell { Text = user.UserName });
+                row.Cells.Add(new TableCell { Text = user.Email });
+                row.Cells.Add(new TableCell { Text = user.Password});
+                row.Cells.Add(new TableCell { Text = user.Comment });
+                UsersTable.Rows.Add(row);
+            }
+
         }
 
     }

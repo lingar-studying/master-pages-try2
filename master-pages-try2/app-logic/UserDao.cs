@@ -123,8 +123,10 @@ namespace master_pages_try2.app_logic
                     users[i++] = RowToUser(reader);
                 }
             }
-            Debug.WriteLine($"Select users = {string.Join(",\n", (object[]) users)}");
+            Debug.WriteLine($"Select users fro GetUsers(0 = {string.Join(",\n", (object[]) users)}");
             reader.Close();
+            connection.Close();
+
             return users;
 
 
