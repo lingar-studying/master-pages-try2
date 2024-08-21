@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="StockWithDb.aspx.cs" Inherits="master_pages_try2.StockWithDb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
@@ -25,6 +26,7 @@
 
     <h2>Add user </h2>
     <div>
+
         <asp:Label ID="lblUserName" runat="server" Text="User Name:"></asp:Label>
         <asp:TextBox ID="OfUserName" runat="server"></asp:TextBox>
 
@@ -42,26 +44,53 @@
         <asp:TextBox ID="OfEmail" runat="server" TextMode="Email"></asp:TextBox>
         <asp:Label ID="Label2" runat="server" Text="Comment:"></asp:Label>
         <asp:TextBox ID="OfComment" runat="server" TextMode="SingleLine"></asp:TextBox>
-        <asp:Button ID="Button3" runat="server" Text="Add User" OnClick="AddNewUser" />
+        <asp:Button ID="Button3" runat="server" Text="Add User" OnClick="AddNewUser" OnClientClick="  return validateUserForm();" />
+        <div><asp:Label ID="ErrorMsg" runat="server" ForeColor="red" Font-Size="Larger"></asp:Label></div>
+        <%-- Not working from external well  --%>
+<%--        <script type="text/javascript" src="web-files/script.js"></script>--%>
+        <script>
+            function validateUserForm() {
+                console.log("validate");
+                const username = document.getElementById('<%= OfUserName.ClientID %>').value;
+                const password = document.getElementById('<%= OfPassword.ClientID %>').value;
+                const email = document.getElementById('<%= OfEmail.ClientID %>').value;
 
-        <asp:Label ID="Label3" runat="server"></asp:Label>
+                let el = document.getElementById('<%=ErrorMsg.ClientID%>');
+                              
+                if (username.trim() === "") {
+                    el.innerHTML ="Username is required.";
 
 
-        
-    <h2>Users List</h2>
+                    return false;
+                }
+                if (password.trim() === "") {
+                    el.innerHTML = "Password is required.";
 
-    <asp:Table runat="server" ID="UsersTable" BorderWidth="1" GridLines="Both" CellPadding="10">
-        <asp:TableHeaderRow ID="Table1HeaderRow" BackColor="LightBlue" runat="server">
-            <asp:TableHeaderCell Scope="Column" Text="Username" />
-            <asp:TableHeaderCell Scope="Column" Text="Email" />
-            <asp:TableHeaderCell Scope="Column" Text="Birthday" />
-            <asp:TableHeaderCell Scope="Column" Text="City" />
-            <asp:TableHeaderCell Scope="Column" Text="Is Admin" />
-        </asp:TableHeaderRow>
-    </asp:Table>
+                    return false;
+                }
+
+                if (email.trim() === "") {
+                    el.innerHTML = "Email is required.";
+
+                    return false;
+                }
+                return true;
+            }
+
+        </script>
+        <h2>Users List</h2>
+
+        <asp:Table runat="server" ID="UsersTable" BorderWidth="1" GridLines="Both" CellPadding="10">
+            <asp:TableHeaderRow ID="Table1HeaderRow" BackColor="LightBlue" runat="server">
+                <asp:TableHeaderCell Scope="Column" Text="Username" />
+                <asp:TableHeaderCell Scope="Column" Text="Email" />
+                <asp:TableHeaderCell Scope="Column" Text="Birthday" />
+                <asp:TableHeaderCell Scope="Column" Text="City" />
+                <asp:TableHeaderCell Scope="Column" Text="Is Admin" />
+            </asp:TableHeaderRow>
+        </asp:Table>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="QuickLoginUI" runat="server">
-
 </asp:Content>
