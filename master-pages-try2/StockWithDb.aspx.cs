@@ -57,8 +57,10 @@ namespace master_pages_try2
 
 
             }
+            //general area
             try
             {
+              
 
 
             }
@@ -79,9 +81,23 @@ namespace master_pages_try2
             string password = OfPassword.Text;
             string email = OfEmail.Text;
             string comment = OfComment.Text;
+            Debug.WriteLine("Add new User code behind");
+
+            //validation:
+            if(UserDao.IsExist("username", username))
+            {
+                ErrorMsg.Text = "username exists, no duplicates...";
+
+                return;
+
+            }
+            if (UserDao.IsExist("email", email))
+            {
+                ErrorMsg.Text = "email exists, no duplicates...";
+                return;
+            }
 
             //creating new user
-
             User user = new User(username, password, email, comment);   
 
             //adding to the db
@@ -169,7 +185,7 @@ namespace master_pages_try2
 
         private void DisplayUsers()
         {
-            UsersTable.Rows.Clear(); 
+            //UsersTable.Rows.Clear(); 
             foreach (var user in users)
             {
                 TableRow row = new TableRow();
