@@ -87,13 +87,18 @@ namespace master_pages_try2
             if(UserDao.IsExist("username", username))
             {
                 ErrorMsg.Text = "username exists, no duplicates...";
-
+                ErrorMsg.Style.Add("Color", "red");
+                //todo - why it's needed (if we don't call it - the list will be empty) 
+                DisplayUsers();
                 return;
 
             }
             if (UserDao.IsExist("email", email))
             {
                 ErrorMsg.Text = "email exists, no duplicates...";
+                ErrorMsg.Style.Add("Color", "red");
+                DisplayUsers();
+
                 return;
             }
 
@@ -107,7 +112,9 @@ namespace master_pages_try2
             ResetTextBoxes(this);
 
             users = UserDao.GetUsers();
-            Debug.WriteLine("Updating users = " + string.Join("\n", (object[])users));
+            //Debug.WriteLine("Updating users = " + string.Join("\n", (object[])users));
+            ErrorMsg.Text = "User has been added";
+            ErrorMsg.Style.Add("Color", "green");
 
             DisplayUsers();
         }
@@ -185,6 +192,7 @@ namespace master_pages_try2
 
         private void DisplayUsers()
         {
+            Debug.WriteLine("Dislay users.. ");
             //UsersTable.Rows.Clear(); 
             foreach (var user in users)
             {

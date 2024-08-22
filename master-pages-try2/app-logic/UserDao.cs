@@ -29,13 +29,17 @@ namespace master_pages_try2.app_logic
             {
 
                 connection.Open();
-                string query = "INSERT INTO users VALUES (@username, @password, @email ,@commentLingar)";
+                string query = "INSERT INTO users  VALUES (@username, @password, @email ,@commentLingar)";
+
+
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@username", user.UserName);
                 command.Parameters.AddWithValue("@password", user.Password);
                 command.Parameters.AddWithValue("@email", user.Email);
                 command.Parameters.AddWithValue("@commentLingar", user.Comment);
+                Debug.WriteLine(command.CommandText);
+
                 int rowsAffected = command.ExecuteNonQuery();
                 Debug.WriteLine($"Rows inserted: {rowsAffected}"); Debug.WriteLine("Initial db.");
                 return user;
@@ -55,6 +59,7 @@ namespace master_pages_try2.app_logic
                 connection.Close();
 
 
+
             }
 
         }
@@ -63,29 +68,41 @@ namespace master_pages_try2.app_logic
         {
 
             SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                //string query = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cars' AND xtype='U')\r\nCREATE TABLE Cars (\r\n    CarID INT PRIMARY KEY,\r\n    CarName NVARCHAR(50),\r\n    CarBrand NVARCHAR(50)\r\n);"
 
-            connection.Open();
-            //string query = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cars' AND xtype='U')\r\nCREATE TABLE Cars (\r\n    CarID INT PRIMARY KEY,\r\n    CarName NVARCHAR(50),\r\n    CarBrand NVARCHAR(50)\r\n);"
 
 
-
-            string query = @"
+                string query = @"
                     IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='users' AND xtype='U')
                     CREATE TABLE users (
                     username Varchar(50) PRIMARY KEY,
+                    password NVARCHAR(50) NOT NULL  ,
                     email NVARCHAR(50) NOT NULL UNIQUE,
-                    password NVARCHAR(50) NOT NULL,
                     comment nvarchar(500) 
                 );";
 
-            SqlCommand command = new SqlCommand(query, connection);
-            command.ExecuteNonQuery();
-            //User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
-            //User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                //User user1 = new User("yim222", "1234abcd", "yim@gmail.com", "this is some user1");
+                //User user2 = new User("lingar", "1234567", "agaf@gmail.com", "My second user");
 
-            //UserDao.AddUser(user1);
-            //UserDao.AddUser(user2);
-            connection.Close();
+                //UserDao.AddUser(user1);
+                //UserDao.AddUser(user2);
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                connection.Close();
+
+            }
+
 
         }
 
@@ -96,40 +113,53 @@ namespace master_pages_try2.app_logic
 
             SqlConnection connection = new SqlConnection(connectionString);
             //run a specialized SELECT COUNT(*) query beforehand.
-
-
-
-            connection.Open();
-
-            string query = "Select COUNT(*) from users";
-            SqlCommand command = new SqlCommand(query, connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-            reader.Read();
-            int count = reader.GetInt32(0);
-            Debug.WriteLine("rows = " + count);
-            reader.Close();
-
-
-            query = "Select * from users";
-            command = new SqlCommand(query, connection);
-
-            User[] users = new User[count];
-             reader = command.ExecuteReader();
-            if (reader.HasRows)
+            SqlDataReader reader = null;
+            try
             {
-                int i = 0;
-                //reader.Ro
-                while (reader.Read())//this method read one row, and return true if exist antoher
-                {
-                    users[i++] = RowToUser(reader);
-                }
-            }
-            Debug.WriteLine($"Select users fro GetUsers(0 = {string.Join(",\n", (object[]) users)}");
-            reader.Close();
-            connection.Close();
+                connection.Open();
 
-            return users;
+                string query = "Select COUNT(*) from users";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                reader = command.ExecuteReader();
+                reader.Read();
+                int count = reader.GetInt32(0);
+                Debug.WriteLine("rows = " + count);
+                reader.Close();
+
+
+                query = "Select * from users";
+                command = new SqlCommand(query, connection);
+
+                User[] users = new User[count];
+                reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    int i = 0;
+                    //reader.Ro
+                    while (reader.Read())//this method read one row, and return true if exist antoher
+                    {
+                        users[i++] = RowToUser(reader);
+                    }
+                }
+                //Debug.WriteLine($"Select users fro GetUsers(0 = {string.Join(",\n", (object[])users)}");
+                return users;
+
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
+
+
+
 
 
 
@@ -153,27 +183,29 @@ namespace master_pages_try2.app_logic
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 ///command.Parameters.AddWithValue("@YourValue", "value_to_check"); // Replace with the value you're checking
-               
 
-                
-                command.Parameters.AddWithValue("@value",value);
-               
-                    connection.Open();
-                    // ExecuteScalar returns an object, which we cast to an int
-                    int count = (int)command.ExecuteScalar();
-                Debug.WriteLine("count isexists= " +  count);
-                   return count > 0;
+
+
+                command.Parameters.AddWithValue("@value", value);
+
+                connection.Open();
+                // ExecuteScalar returns an object, which we cast to an int
+                int count = (int)command.ExecuteScalar();
+                Debug.WriteLine("count isexists= " + count);
+                return count > 0;
             }
-            catch (SqlException ex){
-                Debug.WriteLine(ex.Message );
+            catch (SqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
                 return false;
             }
-            finally { 
-                connection.Close ();
+            finally
+            {
+                connection.Close();
 
             }
-            
-           
+
+
         }
 
     }
