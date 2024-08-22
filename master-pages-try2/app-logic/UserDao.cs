@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Diagnostics;
 using System.Runtime.Remoting.Messaging;
+using System.Collections;
+using master_pages_try2.Model;
 
 namespace master_pages_try2.app_logic
 {
@@ -138,6 +140,40 @@ namespace master_pages_try2.app_logic
             User user = new User(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
 
             return user;
+        }
+
+        public static bool IsExist(string field, string value)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            //string query = "SELECT COUNT(*) FROM users WHERE @field = @value";//wrong - field cannot be parameterized but should be injected as regular string
+            //(for values it's not safe)
+            string query = $"SELECT COUNT(*) FROM users WHERE {field} = @value";
+
+            try
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                ///command.Parameters.AddWithValue("@YourValue", "value_to_check"); // Replace with the value you're checking
+               
+
+                
+                command.Parameters.AddWithValue("@value",value);
+               
+                    connection.Open();
+                    // ExecuteScalar returns an object, which we cast to an int
+                    int count = (int)command.ExecuteScalar();
+                Debug.WriteLine("count isexists= " +  count);
+                   return count > 0;
+            }
+            catch (SqlException ex){
+                Debug.WriteLine(ex.Message );
+                return false;
+            }
+            finally { 
+                connection.Close ();
+
+            }
+            
+           
         }
 
     }
