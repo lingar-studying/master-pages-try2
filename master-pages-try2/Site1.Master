@@ -16,7 +16,7 @@
     <!-- Include unobtrusive validation plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
-           
+
 
 </head>
 <body>
@@ -68,7 +68,11 @@
                 <li><a runat="server" href="~/Page2.aspx">Page2</a></li>
                 <li><a runat="server" href="~/MyStocks.aspx">Stocks Store</a></li>
                 <li><a runat="server" href="~/StockWithDb.aspx">Stocks with DB</a></li>
-                 <li><a runat ="server" href="~/web-files/pages/RequestsAndResponsesPoc.aspx">Requests And ResponsesPoc</a> <li>
+                <li><a runat="server" href="~/web-files/pages/RequestsAndResponsesPoc.aspx">Requests And ResponsesPoc</a> </li>
+                <li><a href="web-files/pages/Login.aspx">Login</a>
+
+                </li>
+
             </ul>
 
 
@@ -76,16 +80,16 @@
                 master page content place holder 2. 
             </asp:ContentPlaceHolder>
 
-           <%-- <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server">
+            <%-- <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server">
                 <asp:Login ID="QuickLogin" runat="server"
                     TitleText="<h3>Sign In</h3>"
                     FailureAction="RedirectToLoginPage">
                 </asp:Login>
             </asp:ContentPlaceHolder>--%>
 
-            
+
             <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server">
-              
+
                 <h2>Sign in</h2>
 
             </asp:ContentPlaceHolder>
@@ -97,5 +101,7 @@
             <img src="images/image1.jpg" alt="Powered by ASP.NET!" runat="server" />
         </div>
     </form>
+
+
 </body>
 </html>

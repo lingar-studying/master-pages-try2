@@ -208,5 +208,69 @@ namespace master_pages_try2.app_logic
 
         }
 
+        public static User Login(string username, string password)
+        {
+
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            //run a specialized SELECT COUNT(*) query beforehand.
+            SqlDataReader reader = null;
+            SqlCommand command = null;
+            try
+            {
+                connection.Open();
+
+                string query = "Select * from users where username = @userNamePar AND password = @passwordPar";
+
+                command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@userNamePar", username);
+                command.Parameters.AddWithValue("@passwordPar", password);
+
+                reader = command.ExecuteReader();
+               
+
+
+               
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    return RowToUser(reader);
+                }
+                else
+                {
+
+                    return null;
+                }
+             
+
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                // Ensure reader, command, and connection are closed/disposed
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (command != null)
+                {
+                    command.Dispose();
+                }
+                if (connection != null)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+                       
+        }
     }
 }

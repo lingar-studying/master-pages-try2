@@ -49,7 +49,7 @@
         <%-- Not working from external well  --%>
         <%--        <script type="text/javascript" src="web-files/script.js"></script>--%>
         <script>
-            function validateUserForm() {
+            function validateUserForm2() {
                 console.log("validate");
                 const username = document.getElementById('<%= OfUserName.ClientID %>').value;
                 const password = document.getElementById('<%= OfPassword.ClientID %>').value;
