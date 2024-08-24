@@ -14,7 +14,7 @@ namespace master_pages_try2.web_files.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void LoginUser(object sender, EventArgs e)
@@ -58,6 +58,7 @@ namespace master_pages_try2.web_files.pages
             //Debug.WriteLine("Updating users = " + string.Join("\n", (object[])users));
             ErrorMsg.Text = "User has been logged successfully " + success;
             ErrorMsg.Style.Add("Color", "green");
+            Response.Redirect("~/Page1.aspx");
 
             
         }

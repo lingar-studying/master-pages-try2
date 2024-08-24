@@ -75,6 +75,7 @@
     <Content Include="Page2.aspx" />
     <Content Include="StockWithDb.aspx" />
     <Content Include="styles.css" />
+    <Content Include="Global.asax" />
     <Content Include="web-files\pages\Login.aspx" />
     <Content Include="web-files\pages\RequestsAndResponsesPoc.aspx" />
     <Content Include="web-files\script.js" />
@@ -137,6 +138,9 @@
     </Compile>
     <Compile Include="StockWithDb.aspx.designer.cs">
       <DependentUpon>StockWithDb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="web-files\pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
