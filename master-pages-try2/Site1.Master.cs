@@ -28,6 +28,11 @@ namespace master_pages_try2
             }
 
         }
-        
+
+        protected void Logout(object sender, EventArgs e)
+        {
+            Session["loggedUser"] = null;
+            Response.Redirect("~/web-files/pages/login.aspx");
+        }
     }
 }

@@ -27,15 +27,19 @@
 
     <form id="form1" runat="server">
 
-        <% if (Session["loggedUser"] != null)
-            { %>
-        <p>Hello, <%= ((User)Session["loggedUser"]).UserName %>!</p>
-        <% }
-        else
-        { %>
-        <p>Hello, Guest!</p>
-        <% } %>
-        <div id="topContent">
+         
+        <div id="topContent" style ="direction:ltr">
+
+            <% if (Session["loggedUser"] != null)
+                { %>
+            <p>Hello, <%= ((User)Session["loggedUser"]).UserName %>!</p>
+            <asp:Button Text="Logout" OnClick="Logout" runat="server" />
+
+            <% }
+                else
+                { %>
+            <p>Hello, Guest!</p>
+            <% } %>
             <h2>Here is the top  content, it's looking for the aspx file with this id ?  </h2>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
