@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using master_pages_try2.app_logic;
 namespace master_pages_try2
 {
     public partial class Site1 : System.Web.UI.MasterPage
@@ -14,5 +14,6 @@ namespace master_pages_try2
             DateDisplay.Text = DateTime.Now.ToString("dddd, MMMM dd");
 
         }
+        
     }
 }

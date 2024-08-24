@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="master_pages_try2.Site1" %>
 
+<%@ Import Namespace="master_pages_try2.app_logic" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -22,7 +24,17 @@
 <body>
 
     <h1>Try to create the annoying master page</h1>
+
     <form id="form1" runat="server">
+
+        <% if (Session["loggedUser"] != null)
+            { %>
+        <p>Hello, <%= ((User)Session["loggedUser"]).UserName %>!</p>
+        <% }
+        else
+        { %>
+        <p>Hello, Guest!</p>
+        <% } %>
         <div id="topContent">
             <h2>Here is the top  content, it's looking for the aspx file with this id ?  </h2>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
