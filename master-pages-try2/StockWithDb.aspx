@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="StockWithDb.aspx.cs" Inherits="master_pages_try2.StockWithDb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
@@ -45,9 +44,10 @@
         <asp:Label ID="Label2" runat="server" Text="Comment:"></asp:Label>
         <asp:TextBox ID="OfComment" runat="server" TextMode="SingleLine"></asp:TextBox>
         <asp:Button ID="Button3" runat="server" Text="Add User" OnClick="AddNewUser" OnClientClick="  return validateUserForm();" />
-        <div><asp:Label ID="ErrorMsg" runat="server" ForeColor="red" Font-Size="Larger"></asp:Label></div>
+        <div>
+            <asp:Label ID="ErrorMsg" runat="server" ForeColor="red" Font-Size="Larger"></asp:Label></div>
         <%-- Not working from external well  --%>
-<%--        <script type="text/javascript" src="web-files/script.js"></script>--%>
+        <%--        <script type="text/javascript" src="web-files/script.js"></script>--%>
         <script>
             function validateUserForm() {
                 console.log("validate");
@@ -56,9 +56,9 @@
                 const email = document.getElementById('<%= OfEmail.ClientID %>').value;
 
                 let el = document.getElementById('<%=ErrorMsg.ClientID%>');
-                              
+
                 if (username.trim() === "") {
-                    el.innerHTML ="Username is required.";
+                    el.innerHTML = "Username is required.";
 
 
                     return false;
@@ -90,6 +90,9 @@
             </asp:TableHeaderRow>
         </asp:Table>
     </div>
+
+    
+
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="QuickLoginUI" runat="server">

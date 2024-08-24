@@ -75,6 +75,7 @@
     <Content Include="Page2.aspx" />
     <Content Include="StockWithDb.aspx" />
     <Content Include="styles.css" />
+    <Content Include="web-files\pages\RequestsAndResponsesPoc.aspx" />
     <Content Include="web-files\script.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -135,6 +136,13 @@
     </Compile>
     <Compile Include="StockWithDb.aspx.designer.cs">
       <DependentUpon>StockWithDb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="web-files\pages\RequestsAndResponsesPoc.aspx.cs">
+      <DependentUpon>RequestsAndResponsesPoc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web-files\pages\RequestsAndResponsesPoc.aspx.designer.cs">
+      <DependentUpon>RequestsAndResponsesPoc.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
